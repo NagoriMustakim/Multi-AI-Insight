@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { extractToken, verifyToken } from '@/lib/auth'
-import { getUserAnalysisCount, saveAnalysisRecord } from '@/lib/supabase'
+import { getUserAnalysisCount, saveAnalysisRecord, getUserIsActive } from '@/lib/supabase'
 import { runAnalysis } from '@/lib/ai-engine'
 import { CompanyInput } from '@/types'
 
 // Allow long-running requests (Vercel Pro: up to 300s)
 export const maxDuration = 300
-
-// Rate limiting placeholder: add rate limiting middleware here (e.g., Upstash Ratelimit)
 
 export async function POST(req: NextRequest) {
     // Auth check
@@ -31,6 +29,32 @@ export async function POST(req: NextRequest) {
             { status: 401 }
         )
     }
+
+    // ── Account activation gate ──────────────────────────────────────────
+    try {
+        const isActive = await getUserIsActive(userId)
+        if (!isActive) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    code: 'ACCOUNT_INACTIVE',
+                    error: 'Your account is pending activation.',
+                    contact: {
+                        linkedin: 'https://www.linkedin.com/in/mustakimnagori',
+                        email: 'mustakimnagori076@gmail.com',
+                    },
+                },
+                { status: 403 }
+            )
+        }
+    } catch (error) {
+        console.error('Active check failed:', error)
+        return NextResponse.json(
+            { success: false, error: 'Failed to verify account status', code: 'SERVER_ERROR' },
+            { status: 500 }
+        )
+    }
+
 
     // Parse and validate request body
     let company: CompanyInput

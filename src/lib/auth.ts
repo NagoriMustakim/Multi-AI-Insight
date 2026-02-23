@@ -40,6 +40,27 @@ export async function verifyToken(token: string): Promise<AuthTokenPayload> {
     }
 }
 
+// ========================
+// ADMIN JWT UTILITIES
+// ========================
+
+export async function signAdminToken(): Promise<string> {
+    return new SignJWT({ role: 'admin' })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('4h')
+        .sign(JWT_SECRET)
+}
+
+export async function verifyAdminToken(token: string): Promise<boolean> {
+    try {
+        const { payload } = await jwtVerify(token, JWT_SECRET)
+        return payload.role === 'admin'
+    } catch {
+        return false
+    }
+}
+
 export function extractToken(req: NextRequest): string | null {
     const authHeader = req.headers.get('authorization')
     if (!authHeader?.startsWith('Bearer ')) return null
@@ -74,6 +95,28 @@ export function requireAuth(handler: AuthenticatedHandler) {
                 { status: 401 }
             )
         }
+    }
+}
+
+type AdminHandler = (req: NextRequest) => Promise<NextResponse | Response>
+
+export function requireAdmin(handler: AdminHandler) {
+    return async (req: NextRequest) => {
+        const token = extractToken(req)
+        if (!token) {
+            return NextResponse.json(
+                { success: false, error: 'Admin authentication required', code: 'NO_TOKEN' },
+                { status: 401 }
+            )
+        }
+        const valid = await verifyAdminToken(token)
+        if (!valid) {
+            return NextResponse.json(
+                { success: false, error: 'Invalid admin token', code: 'INVALID_TOKEN' },
+                { status: 401 }
+            )
+        }
+        return handler(req)
     }
 }
 

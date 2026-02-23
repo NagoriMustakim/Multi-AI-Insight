@@ -63,6 +63,51 @@ export async function getUserById(id: string) {
     return data
 }
 
+export async function getUserIsActive(userId: string): Promise<boolean> {
+    const { data, error } = await getSupabase()
+        .from('users')
+        .select('is_active')
+        .eq('id', userId)
+        .single()
+
+    if (error) throw error
+    return data?.is_active ?? false
+}
+
+// ========================
+// ADMIN OPERATIONS
+// ========================
+
+export async function getAllUsers() {
+    const { data: users, error } = await getSupabase()
+        .from('users')
+        .select('id, email, full_name, is_active, created_at')
+        .order('created_at', { ascending: false })
+
+    if (error) throw error
+
+    // Get analysis counts for each user
+    const usersWithCounts = await Promise.all(
+        (users ?? []).map(async (user) => {
+            const { count } = await getSupabase()
+                .from('analysis_usage')
+                .select('*', { count: 'exact', head: true })
+                .eq('user_id', user.id)
+            return { ...user, analysis_count: count ?? 0 }
+        })
+    )
+    return usersWithCounts
+}
+
+export async function setUserActive(userId: string, isActive: boolean) {
+    const { error } = await getSupabase()
+        .from('users')
+        .update({ is_active: isActive })
+        .eq('id', userId)
+
+    if (error) throw error
+}
+
 // ========================
 // ANALYSIS USAGE OPERATIONS
 // ========================

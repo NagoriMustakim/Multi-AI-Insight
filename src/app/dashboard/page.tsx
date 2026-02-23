@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Crosshair, LogOut, Clock, ChevronRight, BarChart3 } from 'lucide-react'
+import { Crosshair, LogOut, Clock, ChevronRight, BarChart3, ShieldAlert, Linkedin, Mail } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useToast } from '@/components/ui/Toast'
 import { Button } from '@/components/ui/Button'
@@ -24,6 +24,7 @@ export default function DashboardPage() {
     const [analyzing, setAnalyzing] = useState(false)
     const [currentStep, setCurrentStep] = useState('')
     const [currentMessage, setCurrentMessage] = useState('')
+    const [accountInactive, setAccountInactive] = useState(false)
 
     // Check auth
     useEffect(() => {
@@ -43,6 +44,10 @@ export default function DashboardPage() {
             if (data.success) {
                 setHasUsedFree(data.data.hasUsedFree)
                 setHistory(data.data.history || [])
+                // ── Show contact card immediately if account is not yet activated ──
+                if (!data.data.isActive) {
+                    setAccountInactive(true)
+                }
             }
         } catch {
             toast('error', 'Failed to load usage data')
@@ -50,6 +55,7 @@ export default function DashboardPage() {
             setUsageLoading(false)
         }
     }, [token, toast])
+
 
     useEffect(() => {
         if (token) fetchUsage()
@@ -73,6 +79,11 @@ export default function DashboardPage() {
 
             if (!response.ok) {
                 const errorData = await response.json()
+                if (errorData.code === 'ACCOUNT_INACTIVE') {
+                    setAccountInactive(true)
+                    setAnalyzing(false)
+                    return
+                }
                 throw new Error(errorData.error || 'Analysis failed')
             }
 
@@ -196,6 +207,66 @@ export default function DashboardPage() {
                                 <Card className="p-8 flex items-center justify-center min-h-[400px]">
                                     <Spinner size="lg" />
                                 </Card>
+                            ) : accountInactive ? (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                >
+                                    <Card className="p-8">
+                                        <div className="text-center mb-8">
+                                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-warning/10 border border-warning/20 mb-4">
+                                                <ShieldAlert className="h-8 w-8 text-warning" />
+                                            </div>
+                                            <h2 className="text-xl font-bold text-[var(--text-primary)] mb-3">
+                                                Account Pending Activation
+                                            </h2>
+                                            <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-sm mx-auto">
+                                                To prevent spam and ensure quality, new accounts need manual activation.
+                                                Contact the founder to get your free analysis unlocked — it only takes a minute.
+                                            </p>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            <a
+                                                href="https://www.linkedin.com/in/mustakimnagori"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-3 p-4 rounded-xl bg-[#0A66C2]/10 border border-[#0A66C2]/20 hover:bg-[#0A66C2]/20 transition-colors group w-full"
+                                            >
+                                                <div className="p-2.5 rounded-xl bg-[#0A66C2]/20">
+                                                    <Linkedin className="h-5 w-5 text-[#0A66C2]" />
+                                                </div>
+                                                <div className="flex-1 text-left">
+                                                    <p className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[#4fa3e0] transition-colors">
+                                                        Message on LinkedIn
+                                                    </p>
+                                                    <p className="text-xs text-[var(--text-muted)]">linkedin.com/in/mustakimnagori</p>
+                                                </div>
+                                                <ChevronRight className="h-4 w-4 text-[var(--text-muted)] group-hover:text-[#4fa3e0]" />
+                                            </a>
+
+                                            <a
+                                                href={`mailto:mustakimnagori076@gmail.com?subject=Account Activation Request&body=Hi, please activate my CompetitorGap AI account. My email: ${user?.email}`}
+                                                className="flex items-center gap-3 p-4 rounded-xl bg-gold-muted border border-gold/20 hover:border-gold/40 transition-colors group w-full"
+                                            >
+                                                <div className="p-2.5 rounded-xl bg-gold/10">
+                                                    <Mail className="h-5 w-5 text-gold" />
+                                                </div>
+                                                <div className="flex-1 text-left">
+                                                    <p className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-gold transition-colors">
+                                                        Send Activation Email
+                                                    </p>
+                                                    <p className="text-xs text-[var(--text-muted)]">mustakimnagori076@gmail.com</p>
+                                                </div>
+                                                <ChevronRight className="h-4 w-4 text-[var(--text-muted)] group-hover:text-gold" />
+                                            </a>
+                                        </div>
+
+                                        <p className="text-xs text-center text-[var(--text-muted)] mt-6">
+                                            Mention your email: <span className="text-gold font-mono">{user?.email}</span>
+                                        </p>
+                                    </Card>
+                                </motion.div>
                             ) : latestReport ? (
                                 <Card className="p-6">
                                     <div className="flex items-center gap-3 mb-6">
@@ -212,6 +283,7 @@ export default function DashboardPage() {
                                             {latestReport.executive_summary}
                                         </p>
                                     </div>
+
                                     <Button
                                         variant="primary"
                                         onClick={() => {
@@ -286,8 +358,8 @@ export default function DashboardPage() {
                             </Card>
                         </motion.div>
                     </div>
-                </main>
-            </div>
+                </main >
+            </div >
         </>
     )
 }
