@@ -32,8 +32,6 @@ export const GET = requireAuth(
                 success: true,
                 data: {
                     analysisCount,
-                    hasUsedFree: analysisCount >= 1,
-                    limit: 1,
                     isActive,
                     history,
                 },

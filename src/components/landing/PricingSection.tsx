@@ -2,26 +2,26 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Check, ArrowRight, Sparkles, Linkedin, Mail } from 'lucide-react'
+import { Check, ArrowRight, Sparkles, Linkedin, Mail, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { useAuth } from '@/hooks/useAuth'
 import { AuthModal } from '@/components/auth/AuthModal'
 
-const freePlan = {
-    name: 'Free',
-    price: '$0',
+const contactPlan = {
+    name: 'Standard Analysis',
+    price: 'Contact Us',
     period: '',
-    description: 'Experience the full power of AI competitive intelligence.',
+    description: 'Get a deep-dive competitive intelligence report for your product.',
     features: [
-        '1 complete competitor analysis',
+        'Complete competitor mapping',
         'All 11 report sections',
         'AI positioning radar chart',
         'Quick wins & prioritized actions',
         'Feature gap analysis',
         'Market opportunity matrix',
-        'No credit card required',
+        'Direct founder support',
     ],
 }
 
@@ -60,12 +60,12 @@ export function PricingSection() {
                             Simple, <span className="text-gradient-gold">Transparent</span> Pricing
                         </h2>
                         <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-                            Start for free — no credit card needed. Upgrade when you&apos;re ready.
+                            Get industry-leading competitive intelligence. Contact us to run your analysis.
                         </p>
                     </motion.div>
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                        {/* Free Plan */}
+                        {/* Contact/Demo Plan */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -73,13 +73,13 @@ export function PricingSection() {
                             transition={{ delay: 0 }}
                         >
                             <Card goldBorder className="p-8 relative gold-glow h-full flex flex-col">
-                                <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{freePlan.name}</h3>
+                                <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{contactPlan.name}</h3>
                                 <div className="flex items-baseline gap-1 mb-3">
-                                    <span className="text-4xl font-bold font-display text-gradient-gold">{freePlan.price}</span>
+                                    <span className="text-4xl font-bold font-display text-gradient-gold">{contactPlan.price}</span>
                                 </div>
-                                <p className="text-[var(--text-secondary)] mb-6">{freePlan.description}</p>
+                                <p className="text-[var(--text-secondary)] mb-6">{contactPlan.description}</p>
                                 <ul className="space-y-3 mb-8 flex-1">
-                                    {freePlan.features.map(f => (
+                                    {contactPlan.features.map(f => (
                                         <li key={f} className="flex items-center gap-3">
                                             <Check className="h-4 w-4 text-gold shrink-0" />
                                             <span className="text-sm text-[var(--text-secondary)]">{f}</span>
@@ -91,11 +91,11 @@ export function PricingSection() {
                                     size="lg"
                                     className="w-full"
                                     onClick={() => {
-                                        if (isAuthenticated) window.location.href = '/dashboard'
-                                        else setShowAuth(true)
+                                        document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })
+                                        // Focus on email/call
                                     }}
                                 >
-                                    Run Free Analysis
+                                    Contact for Analysis
                                     <ArrowRight className="h-4 w-4" />
                                 </Button>
                             </Card>
@@ -166,6 +166,22 @@ export function PricingSection() {
                                                 Email the Founder
                                             </p>
                                             <p className="text-xs text-[var(--text-muted)]">mustakimnagori076@gmail.com</p>
+                                        </div>
+                                        <ArrowRight className="h-4 w-4 text-[var(--text-muted)] group-hover:text-gold transition-colors" />
+                                    </a>
+
+                                    <a
+                                        href="tel:+919313067765"
+                                        className="flex items-center gap-3 p-3.5 rounded-xl bg-ink-800 border border-ink-700/30 hover:border-gold/20 transition-colors group w-full"
+                                    >
+                                        <div className="p-2 rounded-lg bg-ink-700/50 text-[var(--text-muted)] group-hover:text-gold">
+                                            <Phone className="h-4 w-4" />
+                                        </div>
+                                        <div className="flex-1 text-left">
+                                            <p className="text-sm font-medium text-[var(--text-primary)] group-hover:text-gold transition-colors">
+                                                Call or WhatsApp
+                                            </p>
+                                            <p className="text-xs text-[var(--text-muted)]">+91 9313067765</p>
                                         </div>
                                         <ArrowRight className="h-4 w-4 text-[var(--text-muted)] group-hover:text-gold transition-colors" />
                                     </a>

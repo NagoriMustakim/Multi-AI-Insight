@@ -72,7 +72,8 @@ Our total liability for any claim arising from these Terms or your use of the Se
                             title: '12. Contact',
                             content: `For questions about these Terms:
 Email: mustakimnagori076@gmail.com
-LinkedIn: linkedin.com/in/mustakimnagori`,
+LinkedIn: linkedin.com/in/mustakimnagori
+Phone: +91 9313067765`,
                         },
                     ].map(section => (
                         <section key={section.title}>

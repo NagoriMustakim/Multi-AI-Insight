@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Users, CheckCircle, XCircle, Save, LogOut, Crosshair, Search, RefreshCw, Mail, Linkedin } from 'lucide-react'
+import { Users, CheckCircle, XCircle, Save, LogOut, Crosshair, Search, RefreshCw, Mail, Linkedin, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 interface UserRow {
@@ -281,6 +281,10 @@ export default function AdminDashboardPage() {
                             <a href="mailto:mustakimnagori076@gmail.com"
                                 className="inline-flex items-center gap-1.5 text-xs text-gold hover:underline">
                                 <Mail className="h-3.5 w-3.5" /> mustakimnagori076@gmail.com
+                            </a>
+                            <a href="tel:+919313067765"
+                                className="inline-flex items-center gap-1.5 text-xs text-[var(--text-muted)] hover:text-gold hover:underline">
+                                <Phone className="h-3.5 w-3.5" /> +91 9313067765
                             </a>
                         </div>
                     </div>

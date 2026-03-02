@@ -8,13 +8,13 @@ const features = [
     {
         icon: Globe,
         title: 'Real-Time Competitor Research',
-        description: 'Perplexity AI scans 50+ live sources — G2, Capterra, Reddit, news, and pricing pages — to build a real-time competitive picture.',
+        description: 'AI Agent scans 50+ live sources — G2, Capterra, Reddit, news, and pricing pages — to build a real-time competitive picture.',
         visual: '🔍 Scanning → G2 Reviews → Pricing Pages → Reddit → News → Product Hunt',
     },
     {
         icon: Brain,
         title: 'Deep AI Gap Analysis',
-        description: 'Claude Opus identifies what competitors are missing — the gaps in their product, positioning, and customer experience that you can exploit.',
+        description: 'AI Agent identifies what competitors are missing — the gaps in their product, positioning, and customer experience that you can exploit.',
         visual: '🧠 Analyzing → Feature Gaps → Positioning Blind Spots → Customer Pain',
     },
     {

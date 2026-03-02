@@ -32,15 +32,15 @@ export function SampleReport() {
                         viewport={{ once: true }}
                         className="text-center mb-16"
                     >
-                        <h2 className="font-display text-4xl font-bold text-[var(--text-primary)] mb-4">
-                            See What You&apos;ll <span className="text-gradient-gold">Unlock</span>
+                        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4">
+                            Simple, <span className="text-gradient-gold">Transparent</span> Pricing
                         </h2>
                         <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
                             Every report delivers 12+ competitive intelligence signals, formatted for immediate action.
                         </p>
                     </motion.div>
 
-                    <div className="grid lg:grid-cols-5 gap-8 items-center">
+                    <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
                         {/* Report Preview (blurred) */}
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
@@ -98,7 +98,7 @@ export function SampleReport() {
                             viewport={{ once: true }}
                             className="lg:col-span-2"
                         >
-                            <h3 className="font-display text-2xl font-bold text-[var(--text-primary)] mb-6">
+                            <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] mb-6">
                                 Your full report includes:
                             </h3>
                             <ul className="space-y-3 mb-8">
@@ -127,7 +127,7 @@ export function SampleReport() {
                                     }
                                 }}
                             >
-                                Get Your Free Analysis
+                                Get Your Analysis
                                 <ArrowRight className="h-4 w-4" />
                             </Button>
                         </motion.div>

@@ -93,7 +93,7 @@ export function LiveFeedSection() {
                             <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
                             Live Intelligence Feed
                         </div>
-                        <h2 className="font-display text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4">
+                        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4">
                             See What We&apos;re <span className="text-gradient-gold">Tracking Right Now</span>
                         </h2>
                         <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
@@ -105,10 +105,10 @@ export function LiveFeedSection() {
                         <div className="bg-ink-900/80 border border-ink-700/50 rounded-2xl overflow-hidden">
                             {/* Terminal header */}
                             <div className="flex items-center gap-3 px-5 py-3 bg-ink-800/60 border-b border-ink-700/30">
-                                <div className="flex gap-1.5">
-                                    <div className="w-3 h-3 rounded-full bg-danger/60" />
-                                    <div className="w-3 h-3 rounded-full bg-warning/60" />
-                                    <div className="w-3 h-3 rounded-full bg-success/60" />
+                                <div className="flex gap-1.5 shrink-0">
+                                    <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-danger/60" />
+                                    <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-warning/60" />
+                                    <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-success/60" />
                                 </div>
                                 <span className="text-xs text-[var(--text-muted)] font-mono">competitive-intelligence-stream.live</span>
                                 <div className="ml-auto flex items-center gap-1.5">
@@ -132,11 +132,11 @@ export function LiveFeedSection() {
                                             <span className="text-xl shrink-0">{signal.icon}</span>
                                             <div className="flex-1 min-w-0">
                                                 <div className="flex items-center gap-2 flex-wrap">
-                                                    <span className={`text-sm font-semibold ${typeColors[signal.type]}`}>
+                                                    <span className="text-sm font-semibold text-gradient-gold shrink-0">
                                                         {signal.company}
                                                     </span>
-                                                    <span className="text-sm text-[var(--text-secondary)]">—</span>
-                                                    <span className="text-sm text-[var(--text-secondary)] truncate">{signal.message}</span>
+                                                    <span className="hidden xs:inline text-sm text-[var(--text-secondary)]">—</span>
+                                                    <span className="text-sm text-[var(--text-secondary)] truncate flex-1 min-w-0">{signal.message}</span>
                                                 </div>
                                             </div>
                                             <span className="text-xs text-[var(--text-muted)] shrink-0 font-mono">{signal.time}</span>
@@ -156,7 +156,7 @@ export function LiveFeedSection() {
                             Start Your Analysis
                             <ArrowRight className="h-4 w-4" />
                         </Button>
-                        <p className="text-sm text-[var(--text-muted)] mt-3">Free — no credit card needed</p>
+                        <p className="text-sm text-[var(--text-muted)] mt-3">Advanced Multi-Agent Intelligence</p>
                     </div>
                 </div>
             </section>

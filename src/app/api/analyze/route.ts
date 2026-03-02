@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
                     contact: {
                         linkedin: 'https://www.linkedin.com/in/mustakimnagori',
                         email: 'mustakimnagori076@gmail.com',
+                        phone: '+91 9313067765',
                     },
                 },
                 { status: 403 }
@@ -90,14 +91,14 @@ export async function POST(req: NextRequest) {
         )
     }
 
-    // Check usage limit
+    // Usage check (Contact for more)
     try {
         const analysisCount = await getUserAnalysisCount(userId)
-        if (analysisCount >= 1) {
+        if (analysisCount >= 5) { // Increased limit for activated users, but still limited
             return NextResponse.json(
                 {
                     success: false,
-                    error: 'Free analysis used. Upgrade to Pro for unlimited analyses.',
+                    error: 'Analysis limit reached. Contact the founder for more access.',
                     code: 'LIMIT_REACHED',
                 },
                 { status: 403 }

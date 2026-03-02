@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Crosshair, Linkedin, Mail } from 'lucide-react'
+import { Crosshair, Linkedin, Mail, Phone } from 'lucide-react'
 
 export function Footer() {
     return (
@@ -21,22 +21,29 @@ export function Footer() {
                         <p className="text-sm text-[var(--text-muted)] max-w-xs leading-relaxed mb-5">
                             AI-powered competitive intelligence for modern product teams. Understand your market in minutes, not months.
                         </p>
-                        <div className="flex gap-3">
+                        <div className="flex flex-col sm:flex-row gap-3">
                             <a
                                 href="https://www.linkedin.com/in/mustakimnagori"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0A66C2]/10 border border-[#0A66C2]/20 text-sm text-[#4fa3e0] hover:bg-[#0A66C2]/20 transition-colors"
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#0A66C2]/10 border border-[#0A66C2]/20 text-sm text-[#4fa3e0] hover:bg-[#0A66C2]/20 transition-colors w-full sm:w-auto"
                             >
                                 <Linkedin className="h-4 w-4" />
                                 LinkedIn
                             </a>
                             <a
                                 href="mailto:mustakimnagori076@gmail.com"
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gold-muted border border-gold/20 text-sm text-gold hover:border-gold/40 transition-colors"
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-gold-muted border border-gold/20 text-sm text-gold hover:border-gold/40 transition-colors w-full sm:w-auto"
                             >
                                 <Mail className="h-4 w-4" />
                                 Email
+                            </a>
+                            <a
+                                href="tel:+919313067765"
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-ink-800 border border-ink-700/50 text-sm text-[var(--text-secondary)] hover:border-gold/30 transition-colors w-full sm:w-auto"
+                            >
+                                <Phone className="h-4 w-4" />
+                                +91 9313067765
                             </a>
                         </div>
                     </div>

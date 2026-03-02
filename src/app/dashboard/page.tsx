@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Crosshair, LogOut, Clock, ChevronRight, BarChart3, ShieldAlert, Linkedin, Mail } from 'lucide-react'
+import { Crosshair, LogOut, Clock, ChevronRight, BarChart3, ShieldAlert, Linkedin, Mail, Phone } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useToast } from '@/components/ui/Toast'
 import { Button } from '@/components/ui/Button'
@@ -13,12 +13,12 @@ import { AnalysisForm } from '@/components/analysis/AnalysisForm'
 import { LoadingAnalysis } from '@/components/analysis/LoadingAnalysis'
 import { CompanyInput, CompetitorReport, UsageRecord } from '@/types'
 
+
 export default function DashboardPage() {
     const router = useRouter()
     const { user, token, isAuthenticated, isLoading: authLoading, logout } = useAuth()
     const { toast } = useToast()
 
-    const [hasUsedFree, setHasUsedFree] = useState(false)
     const [history, setHistory] = useState<UsageRecord[]>([])
     const [usageLoading, setUsageLoading] = useState(true)
     const [analyzing, setAnalyzing] = useState(false)
@@ -42,7 +42,6 @@ export default function DashboardPage() {
             })
             const data = await res.json()
             if (data.success) {
-                setHasUsedFree(data.data.hasUsedFree)
                 setHistory(data.data.history || [])
                 // ── Show contact card immediately if account is not yet activated ──
                 if (!data.data.isActive) {
@@ -222,7 +221,7 @@ export default function DashboardPage() {
                                             </h2>
                                             <p className="text-[var(--text-secondary)] text-sm leading-relaxed max-w-sm mx-auto">
                                                 To prevent spam and ensure quality, new accounts need manual activation.
-                                                Contact the founder to get your free analysis unlocked — it only takes a minute.
+                                                Contact the founder to get your account activated — it only takes a minute.
                                             </p>
                                         </div>
 
@@ -257,6 +256,22 @@ export default function DashboardPage() {
                                                         Send Activation Email
                                                     </p>
                                                     <p className="text-xs text-[var(--text-muted)]">mustakimnagori076@gmail.com</p>
+                                                </div>
+                                                <ChevronRight className="h-4 w-4 text-[var(--text-muted)] group-hover:text-gold" />
+                                            </a>
+
+                                            <a
+                                                href="tel:+919313067765"
+                                                className="flex items-center gap-3 p-4 rounded-xl bg-ink-800 border border-ink-700/30 hover:border-gold/20 transition-colors group w-full"
+                                            >
+                                                <div className="p-2.5 rounded-xl bg-ink-700/50">
+                                                    <Phone className="h-5 w-5 text-[var(--text-muted)] group-hover:text-gold transition-colors" />
+                                                </div>
+                                                <div className="flex-1 text-left">
+                                                    <p className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-gold transition-colors">
+                                                        Direct Call / WhatsApp
+                                                    </p>
+                                                    <p className="text-xs text-[var(--text-muted)]">+91 9313067765</p>
                                                 </div>
                                                 <ChevronRight className="h-4 w-4 text-[var(--text-muted)] group-hover:text-gold" />
                                             </a>
@@ -300,7 +315,6 @@ export default function DashboardPage() {
                             ) : (
                                 <AnalysisForm
                                     onSubmit={handleAnalyze}
-                                    hasUsedFree={hasUsedFree}
                                     isLoading={analyzing}
                                 />
                             )}

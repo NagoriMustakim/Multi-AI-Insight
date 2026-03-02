@@ -11,11 +11,10 @@ import { CompanyInput } from '@/types'
 
 interface AnalysisFormProps {
     onSubmit: (company: CompanyInput) => void
-    hasUsedFree: boolean
     isLoading: boolean
 }
 
-export function AnalysisForm({ onSubmit, hasUsedFree, isLoading }: AnalysisFormProps) {
+export function AnalysisForm({ onSubmit, isLoading }: AnalysisFormProps) {
     const [form, setForm] = useState<CompanyInput>({
         name: '',
         product: '',
@@ -57,26 +56,7 @@ export function AnalysisForm({ onSubmit, hasUsedFree, isLoading }: AnalysisFormP
         onSubmit(form)
     }
 
-    if (hasUsedFree) {
-        return (
-            <Card className="p-8">
-                <div className="text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-warning/10 border border-warning/20 mb-4">
-                        <AlertTriangle className="h-8 w-8 text-warning" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
-                        Free Analysis Used
-                    </h3>
-                    <p className="text-[var(--text-secondary)] mb-6">
-                        You&apos;ve used your free analysis. Upgrade to Pro for unlimited competitive intelligence reports.
-                    </p>
-                    <Button variant="primary" size="lg" disabled>
-                        Pro — Coming Soon
-                    </Button>
-                </div>
-            </Card>
-        )
-    }
+
 
     return (
         <Card className="p-6">
@@ -170,11 +150,11 @@ export function AnalysisForm({ onSubmit, hasUsedFree, isLoading }: AnalysisFormP
                     disabled={isLoading}
                 >
                     <Send className="h-4 w-4" />
-                    Run Free Analysis
+                    Run Analysis
                 </Button>
 
                 <p className="text-xs text-center text-[var(--text-muted)]">
-                    Analysis takes 2-3 minutes. You get 1 free analysis.
+                    Analysis takes 2-3 minutes to research and generate.
                 </p>
             </form>
         </Card>

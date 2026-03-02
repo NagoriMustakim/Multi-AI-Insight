@@ -130,23 +130,25 @@ export function Hero() {
             <section className="relative min-h-screen flex flex-col overflow-hidden">
                 {/* Navigation bar */}
                 <nav className="w-full px-6 py-5 flex items-center justify-between max-w-7xl mx-auto">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 shrink-0">
                         <div className="p-2 rounded-xl bg-gold-muted border border-gold/20">
                             <Crosshair className="h-5 w-5 text-gold" />
                         </div>
-                        <span className="font-display font-bold text-xl text-[var(--text-primary)]">
+                        <span className="font-display font-bold text-lg sm:text-xl text-[var(--text-primary)]">
                             CompetitorGap<span className="text-gold"> AI</span>
                         </span>
                     </div>
                     {!isAuthenticated && (
-                        <div className="flex items-center gap-3">
-                            <Button variant="ghost" size="sm" onClick={() => openAuth('login')}>
+                        <div className="flex items-center gap-2 sm:gap-3">
+                            <Button variant="ghost" size="sm" onClick={() => openAuth('login')} className="px-2 sm:px-4">
                                 <LogIn className="h-4 w-4" />
-                                Sign In
+                                <span className="hidden xs:inline">Sign In</span>
+                                <span className="xs:hidden">Login</span>
                             </Button>
-                            <Button variant="primary" size="sm" onClick={() => openAuth('register')}>
+                            <Button variant="primary" size="sm" onClick={() => openAuth('register')} className="px-3 sm:px-4">
                                 <UserPlus className="h-4 w-4" />
-                                Get Started Free
+                                <span className="hidden xs:inline">Get Started</span>
+                                <span className="xs:hidden">Start</span>
                             </Button>
                         </div>
                     )}
@@ -173,11 +175,11 @@ export function Hero() {
                                     Multi-Agent AI Competitive Intelligence
                                 </div>
 
-                                <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6">
+                                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6">
                                     <span className="text-[var(--text-primary)]">Your Competitors</span>
                                     <br />
                                     <span className="text-[var(--text-primary)]">Are Moving.</span>
-                                    <br />
+                                    <br className="sm:hidden" />
                                     <span className="text-gradient-gold">We Tell You</span>
                                     <br />
                                     <span className="text-gradient-gold">Exactly How.</span>
@@ -188,10 +190,11 @@ export function Hero() {
                                     scanning live data, identifying gaps, and delivering board-ready intelligence in under 3 minutes.
                                 </p>
 
-                                <div className="flex flex-wrap gap-4 mb-8">
+                                <div className="flex flex-col sm:flex-row gap-4 mb-8">
                                     <Button
                                         variant="primary"
                                         size="lg"
+                                        className="w-full sm:w-auto"
                                         onClick={() => {
                                             if (isAuthenticated) {
                                                 window.location.href = '/dashboard'
@@ -200,19 +203,19 @@ export function Hero() {
                                             }
                                         }}
                                     >
-                                        Run Free Analysis
+                                        Get Started
                                         <ArrowRight className="h-4 w-4" />
                                     </Button>
-                                    <Button variant="ghost" size="lg" onClick={scrollToSample}>
+                                    <Button variant="ghost" size="lg" className="w-full sm:w-auto" onClick={scrollToSample}>
                                         See Sample Report
                                     </Button>
                                 </div>
 
-                                <div className="flex flex-wrap gap-6 text-sm text-[var(--text-muted)]">
-                                    <span>✓ No credit card</span>
-                                    <span>✓ First analysis free</span>
-                                    <span>✓ Results in 3 minutes</span>
+                                <div className="grid grid-cols-2 lg:flex lg:flex-wrap gap-x-6 gap-y-3 text-sm text-[var(--text-muted)]">
                                     <span>✓ No setup required</span>
+                                    <span>✓ Detailed AI insights</span>
+                                    <span>✓ Results in 3 minutes</span>
+                                    <span>✓ Board-ready intelligence</span>
                                 </div>
                             </motion.div>
 

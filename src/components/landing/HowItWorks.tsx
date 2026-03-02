@@ -8,7 +8,7 @@ const stats = [
     { label: 'Analysis Time', value: 3, suffix: ' min', icon: Clock },
     { label: 'Competitors Mapped', value: 4, suffix: '+', icon: Users },
     { label: 'AI Agents Running', value: 6, suffix: '', icon: Cpu },
-    { label: 'First Analysis', value: 0, suffix: 'Free', icon: Zap },
+    { label: 'Data Sources Scanned', value: 50, suffix: '+', icon: Database },
 ]
 
 function AnimatedCounter({ target, suffix }: { target: number; suffix: string }) {
@@ -81,7 +81,7 @@ export function HowItWorks() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-24 p-8 rounded-2xl bg-ink-900/60 border border-ink-700/50"
+                    className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-6 mb-24 p-8 rounded-2xl bg-ink-900/60 border border-ink-700/50"
                 >
                     {stats.map((stat) => (
                         <div key={stat.label} className="text-center">
@@ -99,7 +99,7 @@ export function HowItWorks() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="font-display text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4">
+                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-4">
                         How Our <span className="text-gradient-gold">AI Pipeline</span> Works
                     </h2>
                     <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
@@ -112,7 +112,7 @@ export function HowItWorks() {
                     {/* Desktop connecting line */}
                     <div className="hidden md:block absolute top-14 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-gold/10 via-gold/40 to-gold/10" />
 
-                    <div className="grid md:grid-cols-4 gap-8">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {steps.map((step, i) => (
                             <motion.div
                                 key={step.title}
@@ -153,7 +153,7 @@ export function HowItWorks() {
                     <h3 className="text-center text-lg font-semibold text-[var(--text-primary)] mb-8">
                         AI Infrastructure You Can Trust
                     </h3>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-4">
                         {[
                             { icon: Globe, label: 'Web Research Agent', desc: 'Live data from 50+ sources' },
                             { icon: Cpu, label: 'Strategic Analysis Agent', desc: 'Advanced chain-of-thought reasoning' },

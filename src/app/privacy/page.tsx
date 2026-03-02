@@ -78,7 +78,8 @@ To exercise these rights, email: mustakimnagori076@gmail.com`,
                             title: '9. Contact',
                             content: `For privacy-related questions or requests:
 Email: mustakimnagori076@gmail.com
-LinkedIn: linkedin.com/in/mustakimnagori`,
+LinkedIn: linkedin.com/in/mustakimnagori
+Phone: +91 9313067765`,
                         },
                     ].map(section => (
                         <section key={section.title}>
