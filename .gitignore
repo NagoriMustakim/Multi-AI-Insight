@@ -43,3 +43,9 @@ next-env.d.ts
 # bmad
 _bmad
 .agent
+.gemini
+
+razorpay_setup_guide.md
+db_setup.sql
+.env.local
+.env.example

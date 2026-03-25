@@ -138,6 +138,12 @@ export function Hero() {
                             CompetitorGap<span className="text-gold"> AI</span>
                         </span>
                     </div>
+                    <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                        <button onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-[var(--text-muted)] hover:text-gold transition-colors">Features</button>
+                        <button onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-[var(--text-muted)] hover:text-gold transition-colors">How it works</button>
+                        <button onClick={() => window.location.href = '/pricing'} className="text-sm font-medium text-[var(--text-muted)] hover:text-gold transition-colors font-bold text-gold">Pricing</button>
+                    </div>
+
                     {!isAuthenticated && (
                         <div className="flex items-center gap-2 sm:gap-3">
                             <Button variant="ghost" size="sm" onClick={() => openAuth('login')} className="px-2 sm:px-4">

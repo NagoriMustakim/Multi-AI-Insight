@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { extractToken, verifyToken } from '@/lib/auth'
-import { getUserAnalysisCount, saveAnalysisRecord, getUserIsActive } from '@/lib/supabase'
+import { deductCredits, getUserCredits, saveAnalysisRecord } from '@/lib/supabase'
 import { runAnalysis } from '@/lib/ai-engine'
 import { CompanyInput } from '@/types'
 
 // Allow long-running requests (Vercel Pro: up to 300s)
 export const maxDuration = 300
+
+const CREDITS_PER_REPORT = 10
 
 export async function POST(req: NextRequest) {
     // Auth check
@@ -18,11 +20,9 @@ export async function POST(req: NextRequest) {
     }
 
     let userId: string
-    let email: string
     try {
         const payload = await verifyToken(token)
         userId = payload.userId
-        email = payload.email
     } catch {
         return NextResponse.json(
             { success: false, error: 'Invalid or expired token', code: 'INVALID_TOKEN' },
@@ -30,32 +30,57 @@ export async function POST(req: NextRequest) {
         )
     }
 
-    // ── Account activation gate ──────────────────────────────────────────
+    // ── Credit balance check ─────────────────────────────────────────────
     try {
-        const isActive = await getUserIsActive(userId)
-        if (!isActive) {
+        const credits = await getUserCredits(userId)
+        if (credits < CREDITS_PER_REPORT) {
             return NextResponse.json(
                 {
                     success: false,
-                    code: 'ACCOUNT_INACTIVE',
-                    error: 'Your account is pending activation.',
-                    contact: {
-                        linkedin: 'https://www.linkedin.com/in/mustakimnagori',
-                        email: 'mustakimnagori076@gmail.com',
-                        phone: '+91 9313067765',
+                    code: 'INSUFFICIENT_CREDITS',
+                    error: `Not enough credits. You need ${CREDITS_PER_REPORT} credits to generate a report.`,
+                    data: {
+                        required: CREDITS_PER_REPORT,
+                        available: credits,
+                        upsell: {
+                            credits: 50,
+                            priceLabel: '$25',
+                            message: 'Buy 50 credits to continue generating reports.',
+                        },
                     },
                 },
                 { status: 403 }
             )
         }
     } catch (error) {
-        console.error('Active check failed:', error)
+        console.error('Credit check failed:', error)
         return NextResponse.json(
-            { success: false, error: 'Failed to verify account status', code: 'SERVER_ERROR' },
+            { success: false, error: 'Failed to verify credit balance', code: 'SERVER_ERROR' },
             { status: 500 }
         )
     }
 
+    // ── Atomic credit deduction (before analysis starts) ─────────────────
+    try {
+        const deducted = await deductCredits(userId, CREDITS_PER_REPORT)
+        if (!deducted) {
+            // Race condition: someone else consumed the credits between check and deduct
+            return NextResponse.json(
+                {
+                    success: false,
+                    code: 'INSUFFICIENT_CREDITS',
+                    error: 'Credits were consumed by another request. Please try again.',
+                },
+                { status: 403 }
+            )
+        }
+    } catch (error) {
+        console.error('Credit deduction failed:', error)
+        return NextResponse.json(
+            { success: false, error: 'Failed to deduct credits', code: 'SERVER_ERROR' },
+            { status: 500 }
+        )
+    }
 
     // Parse and validate request body
     let company: CompanyInput
@@ -88,27 +113,6 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(
             { success: false, error: 'Invalid request body', code: 'PARSE_ERROR' },
             { status: 400 }
-        )
-    }
-
-    // Usage check (Contact for more)
-    try {
-        const analysisCount = await getUserAnalysisCount(userId)
-        if (analysisCount >= 5) { // Increased limit for activated users, but still limited
-            return NextResponse.json(
-                {
-                    success: false,
-                    error: 'Analysis limit reached. Contact the founder for more access.',
-                    code: 'LIMIT_REACHED',
-                },
-                { status: 403 }
-            )
-        }
-    } catch (error) {
-        console.error('Usage check failed:', error)
-        return NextResponse.json(
-            { success: false, error: 'Failed to check usage', code: 'SERVER_ERROR' },
-            { status: 500 }
         )
     }
 
@@ -148,6 +152,9 @@ export async function POST(req: NextRequest) {
                     type: 'error',
                     error: error instanceof Error ? error.message : 'Analysis failed. Please try again.',
                 })
+                // Note: credits are NOT refunded on analysis failure.
+                // This is intentional — the AI API calls were still consumed.
+                // For refund cases, admin can manually grant credits.
             } finally {
                 controller.close()
             }

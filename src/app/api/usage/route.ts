@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/auth'
-import { getUserAnalysisCount, getUserAnalysisHistory, getAnalysisById, getUserIsActive } from '@/lib/supabase'
+import { getUserAnalysisCount, getUserAnalysisHistory, getAnalysisById, getUserSubscription } from '@/lib/supabase'
 
 export const GET = requireAuth(
     async (req: NextRequest, { userId }: { userId: string; email: string }) => {
@@ -21,18 +21,21 @@ export const GET = requireAuth(
                 })
             }
 
-            // Default: return usage info + activation status in parallel
-            const [analysisCount, history, isActive] = await Promise.all([
+            // Default: return usage info + subscription details in parallel
+            const [analysisCount, history, subscription] = await Promise.all([
                 getUserAnalysisCount(userId),
                 getUserAnalysisHistory(userId),
-                getUserIsActive(userId),
+                getUserSubscription(userId),
             ])
 
             return NextResponse.json({
                 success: true,
                 data: {
                     analysisCount,
-                    isActive,
+                    availableCredits: subscription.available_credits,
+                    subscriptionTier: subscription.subscription_tier,
+                    subscriptionStatus: subscription.subscription_status,
+                    trialUsed: subscription.trial_used,
                     history,
                 },
             })

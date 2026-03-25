@@ -1,4 +1,22 @@
 // ========================
+// SUBSCRIPTION & CREDIT TYPES
+// ========================
+
+export type SubscriptionTier = 'free' | 'indie_monthly' | 'indie_yearly' | 'growth_monthly' | 'growth_yearly' | 'scale_monthly' | 'scale_yearly'
+export type SubscriptionStatus = 'inactive' | 'trialing' | 'active' | 'cancelled' | 'past_due'
+
+export interface CreditLedgerEntry {
+    id: string
+    user_id: string
+    amount: number
+    transaction_type: 'subscription_grant' | 'add_on_purchase' | 'report_usage' | 'trial_grant' | 'admin_grant'
+    description: string | null
+    razorpay_payment_id: string | null
+    created_at: string
+    expires_at: string | null
+}
+
+// ========================
 // AUTH TYPES
 // ========================
 
@@ -6,6 +24,10 @@ export interface User {
     id: string
     email: string
     full_name?: string | null
+    subscription_tier: SubscriptionTier
+    subscription_status: SubscriptionStatus
+    available_credits: number
+    trial_used: boolean
     created_at: string
     updated_at: string
 }
@@ -167,8 +189,10 @@ export type ApiResponse<T> = ApiSuccess<T> | ApiError
 
 export interface UsageInfo {
     analysisCount: number
-    hasUsedFree: boolean
-    limit: number
+    availableCredits: number
+    subscriptionTier: SubscriptionTier
+    subscriptionStatus: SubscriptionStatus
+    trialUsed: boolean
 }
 
 export interface UsageRecord {
@@ -179,6 +203,19 @@ export interface UsageRecord {
     market: string
     created_at: string
     report_data?: CompetitorReport
+}
+
+// ========================
+// SUBSCRIPTION API TYPES
+// ========================
+
+export interface SubscriptionInfo {
+    tier: SubscriptionTier
+    status: SubscriptionStatus
+    availableCredits: number
+    trialUsed: boolean
+    currentPeriodEnd: string | null
+    razorpaySubscriptionId: string | null
 }
 
 // ========================
