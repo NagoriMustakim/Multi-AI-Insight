@@ -26,7 +26,7 @@ export const POST = requireAuth(
                     amount: ADDON_CREDITS.amountINR,
                     currency: 'INR',
                     credits: ADDON_CREDITS.amount,
-                    razorpayKeyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                    razorpayKeyId: process.env.RAZORPAY_KEY_ID,
                 },
             })
         } catch (error) {

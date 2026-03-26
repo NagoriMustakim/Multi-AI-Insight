@@ -77,7 +77,7 @@ export const POST = requireAuth(
                 success: true,
                 data: {
                     subscriptionId: subscription.id,
-                    razorpayKeyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+                    razorpayKeyId: process.env.RAZORPAY_KEY_ID,
                     planName: plan.name,
                     planKey: plan.key,
                     amount: plan.interval === 'monthly' ? plan.amountINR : plan.amountINR,
