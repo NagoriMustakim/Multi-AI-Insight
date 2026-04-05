@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Terms of Service — CompetitorGap AI',
-    description: 'CompetitorGap AI Terms of Service.',
+    title: 'Terms of Service — Multi AI Insight',
+    description: 'Multi AI Insight Terms of Service.',
 }
 
 export default function TermsPage() {
@@ -18,11 +18,11 @@ export default function TermsPage() {
                     {[
                         {
                             title: '1. Acceptance of Terms',
-                            content: `By creating an account or using CompetitorGap AI ("the Service"), you agree to these Terms of Service. If you do not agree, do not use the Service.`,
+                            content: `By creating an account or using Multi AI Insight ("the Service"), you agree to these Terms of Service. If you do not agree, do not use the Service.`,
                         },
                         {
                             title: '2. Description of Service',
-                            content: `CompetitorGap AI provides AI-powered competitive intelligence reports. The Service uses multi-agent AI systems to research and analyze competitive landscapes based on information you provide. Results are informational in nature and not financial, legal, or business advice.`,
+                            content: `Multi AI Insight provides AI-powered competitive intelligence reports. The Service uses multi-agent AI systems to research and analyze competitive landscapes based on information you provide. Results are informational in nature and not financial, legal, or business advice.`,
                         },
                         {
                             title: '3. Free Tier',
@@ -44,7 +44,7 @@ export default function TermsPage() {
                         },
                         {
                             title: '6. Intellectual Property',
-                            content: `The intelligence reports generated for you based on your company information are your property. The underlying platform, AI systems, algorithms, and technology are owned by CompetitorGap AI. You may not reproduce the platform or its technology without written permission.`,
+                            content: `The intelligence reports generated for you based on your company information are your property. The underlying platform, AI systems, algorithms, and technology are owned by Multi AI Insight. You may not reproduce the platform or its technology without written permission.`,
                         },
                         {
                             title: '7. Privacy',
@@ -52,7 +52,7 @@ export default function TermsPage() {
                         },
                         {
                             title: '8. Limitation of Liability',
-                            content: `To the maximum extent permitted by law, CompetitorGap AI shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of revenue, data, goodwill, or business opportunities, resulting from your use of the Service.
+                            content: `To the maximum extent permitted by law, Multi AI Insight shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of revenue, data, goodwill, or business opportunities, resulting from your use of the Service.
 
 Our total liability for any claim arising from these Terms or your use of the Service shall not exceed the amount you paid us in the 12 months preceding the claim.`,
                         },

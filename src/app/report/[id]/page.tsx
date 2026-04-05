@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Crosshair } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
+import { BrandLogo } from '@/components/ui/Logo'
 import { Button } from '@/components/ui/Button'
 import { Spinner } from '@/components/ui/Spinner'
 import { useToast } from '@/components/ui/Toast'
@@ -115,12 +116,7 @@ export default function ReportPage() {
             <header className="border-b border-ink-700/50 bg-ink-900/60 backdrop-blur-sm sticky top-0 z-40 no-print">
                 <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
                     <a href="/" className="flex items-center gap-3">
-                        <div className="p-1.5 rounded-lg bg-gold-muted">
-                            <Crosshair className="h-4 w-4 text-gold" />
-                        </div>
-                        <span className="font-display font-bold text-lg text-[var(--text-primary)]">
-                            CompetitorGap AI
-                        </span>
+                        <BrandLogo size="sm" />
                     </a>
                     <Button variant="ghost" size="sm" onClick={() => router.push('/dashboard')}>
                         <ArrowLeft className="h-4 w-4" />

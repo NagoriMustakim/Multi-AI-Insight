@@ -3,8 +3,9 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Crosshair, LogOut, Clock, ChevronRight, BarChart3, Zap, Plus, CreditCard, Sparkles, Building2, Package } from 'lucide-react'
+import { LogOut, Clock, ChevronRight, BarChart3, Zap, Plus, CreditCard, Sparkles, Building2, Package } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
+import { BrandLogo } from '@/components/ui/Logo'
 import { useToast } from '@/components/ui/Toast'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -172,12 +173,7 @@ export default function DashboardPage() {
                 <header className="border-b border-ink-700/50 bg-ink-900/60 backdrop-blur-sm sticky top-0 z-40">
                     <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
                         <a href="/" className="flex items-center gap-3">
-                            <div className="p-1.5 rounded-lg bg-gold-muted border border-gold/20">
-                                <Crosshair className="h-4 w-4 text-gold" />
-                            </div>
-                            <span className="font-display font-bold text-lg text-[var(--text-primary)]">
-                                CompetitorGap AI
-                            </span>
+                            <BrandLogo size="sm" />
                         </a>
 
                         <div className="flex items-center gap-6">

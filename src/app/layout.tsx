@@ -23,9 +23,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'CompetitorGap AI — AI-Powered Competitive Intelligence',
+  title: 'Multi AI Insight — AI-Powered Competitive Intelligence',
   description:
-    'CompetitorGap AI agents analyze your market in real-time, surfacing the gaps your competitors can\'t see — so you move first.',
+    'Multi AI Insight agents analyze your market in real-time, surfacing the gaps your competitors can\'t see — so you move first.',
   keywords: ['competitive intelligence', 'competitor analysis', 'AI', 'market research', 'gap analysis'],
   icons: {
     icon: '/favicon.svg',

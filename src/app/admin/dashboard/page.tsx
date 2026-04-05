@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Users, CheckCircle, XCircle, Save, LogOut, Crosshair, Search, RefreshCw, Zap, Plus, CreditCard, Shield } from 'lucide-react'
+import { Users, CheckCircle, XCircle, Save, LogOut, Search, RefreshCw, Zap, Plus, CreditCard, Shield } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { BrandLogo } from '@/components/ui/Logo'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 
@@ -97,9 +98,7 @@ export default function AdminDashboardPage() {
             <header className="border-b border-ink-700/30 bg-ink-900/60 backdrop-blur-sm sticky top-0 z-10">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="p-1.5 rounded-lg bg-gold-muted border border-gold/20">
-                            <Crosshair className="h-4 w-4 text-gold" />
-                        </div>
+                        <BrandLogo size="sm" />
                         <span className="font-display font-bold text-lg text-[var(--text-primary)]">
                             Admin Dashboard
                         </span>

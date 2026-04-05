@@ -102,10 +102,10 @@ export function ProblemSection() {
                             </div>
                         </div>
 
-                        {/* Right: CompetitorGap timeline */}
+                        {/* Right: Multi AI Insight timeline */}
                         <div>
                             <h3 className="font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
-                                <span className="text-success">✓</span> With CompetitorGap AI...
+                                <span className="text-success">✓</span> With Multi AI Insight...
                             </h3>
                             <div className="space-y-3">
                                 {[

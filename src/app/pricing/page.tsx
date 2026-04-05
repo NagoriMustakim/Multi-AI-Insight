@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Check, Sparkles, Zap, ShieldCheck, ArrowRight, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
+import { BrandLogo } from '@/components/ui/Logo'
 import { Card } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { useAuth } from '@/hooks/useAuth'
@@ -70,7 +71,7 @@ const plans = {
 }
 
 export default function PricingPage() {
-    const [isYearly, setIsYearly] = useState(true)
+    const [isYearly, setIsYearly] = useState(false)
     const [loadingPlan, setLoadingPlan] = useState<string | null>(null)
     const [showAuth, setShowAuth] = useState(false)
     const { isAuthenticated, user, token } = useAuth()
@@ -111,7 +112,7 @@ export default function PricingPage() {
             const options = {
                 key: razorpayKeyId,
                 subscription_id: subscriptionId,
-                name: 'CompetitorGap AI',
+                name: 'Multi AI Insight',
                 description: `${planName} Subscription`,
                 image: '/favicon.svg',
                 handler: async function (response: any) {
@@ -180,10 +181,7 @@ export default function PricingPage() {
             {/* Navigation Placeholder/Simple */}
             <header className="max-w-7xl mx-auto px-6 py-8 flex items-center justify-between">
                 <a href="/" className="flex items-center gap-3">
-                    <div className="p-2 rounded-xl bg-gold-muted border border-gold/20">
-                        <Zap className="h-6 w-6 text-gold" />
-                    </div>
-                    <span className="font-display font-bold text-xl tracking-tight">CompetitorGap AI</span>
+                    <BrandLogo size="md" />
                 </a>
                 <Button variant="ghost" size="sm" onClick={() => router.push(isAuthenticated ? '/dashboard' : '/')}>
                     {isAuthenticated ? 'Dashboard' : 'Sign In'}
@@ -330,7 +328,7 @@ export default function PricingPage() {
             </main>
 
             <footer className="border-t border-ink-800 mt-20 py-12 text-center text-[var(--text-muted)] text-sm">
-                <p>&copy; {new Date().getFullYear()} CompetitorGap AI. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Multi AI Insight. All rights reserved.</p>
             </footer>
         </div>
     )

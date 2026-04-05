@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Privacy Policy — CompetitorGap AI',
-    description: 'CompetitorGap AI Privacy Policy — how we handle your data.',
+    title: 'Privacy Policy — Multi AI Insight',
+    description: 'Multi AI Insight Privacy Policy — how we handle your data.',
 }
 
 export default function PrivacyPage() {

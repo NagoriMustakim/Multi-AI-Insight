@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Crosshair, Eye, EyeOff, Lock, AlertCircle } from 'lucide-react'
+import { Eye, EyeOff, Lock, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { NeuralGraphIcon } from '@/components/ui/Logo'
 
 export default function AdminLoginPage() {
     const [email, setEmail] = useState('')
@@ -50,13 +51,13 @@ export default function AdminLoginPage() {
                 {/* Logo */}
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold-muted border border-gold/20 mb-4">
-                        <Crosshair className="h-7 w-7 text-gold" />
+                        <NeuralGraphIcon size={32} />
                     </div>
                     <h1 className="font-display text-2xl font-bold text-[var(--text-primary)]">
                         Admin Access
                     </h1>
                     <p className="text-sm text-[var(--text-muted)] mt-1">
-                        CompetitorGap AI — Restricted
+                        Multi AI Insight — Restricted
                     </p>
                 </div>
 

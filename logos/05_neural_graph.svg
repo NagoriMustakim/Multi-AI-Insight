@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <defs>
+    <linearGradient id="goldGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#fcecba"/>
+    </linearGradient>
+    <linearGradient id="steelGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6b8cba"/>
+      <stop offset="100%" stop-color="#4a6d96"/>
+    </linearGradient>
+    <filter id="nodeGlow">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="120" rx="12" fill="#05060A"/>
+  
+  <!-- Neural Network Logo Mark -->
+  <g transform="translate(55, 60)" filter="url(#nodeGlow)">
+    <!-- Connection lines (edges) -->
+    <line x1="-28" y1="-22" x2="-10" y2="-8" stroke="#d4af37" stroke-width="0.8" opacity="0.4"/>
+    <line x1="-28" y1="-22" x2="-22" y2="10" stroke="#6b8cba" stroke-width="0.8" opacity="0.3"/>
+    <line x1="-10" y1="-8" x2="8" y2="-24" stroke="#d4af37" stroke-width="0.8" opacity="0.4"/>
+    <line x1="-10" y1="-8" x2="-6" y2="18" stroke="#d4af37" stroke-width="0.8" opacity="0.35"/>
+    <line x1="-10" y1="-8" x2="14" y2="6" stroke="#6b8cba" stroke-width="0.8" opacity="0.3"/>
+    <line x1="8" y1="-24" x2="28" y2="-14" stroke="#d4af37" stroke-width="0.8" opacity="0.4"/>
+    <line x1="8" y1="-24" x2="14" y2="6" stroke="#d4af37" stroke-width="0.8" opacity="0.35"/>
+    <line x1="14" y1="6" x2="28" y2="-14" stroke="#6b8cba" stroke-width="0.8" opacity="0.3"/>
+    <line x1="14" y1="6" x2="26" y2="24" stroke="#d4af37" stroke-width="0.8" opacity="0.4"/>
+    <line x1="-6" y1="18" x2="26" y2="24" stroke="#d4af37" stroke-width="0.8" opacity="0.35"/>
+    <line x1="-22" y1="10" x2="-6" y2="18" stroke="#d4af37" stroke-width="0.8" opacity="0.4"/>
+    <line x1="-22" y1="10" x2="-30" y2="28" stroke="#6b8cba" stroke-width="0.8" opacity="0.3"/>
+    
+    <!-- Nodes (data points) -->
+    <!-- Primary gold nodes -->
+    <circle cx="-28" cy="-22" r="4.5" fill="#d4af37" opacity="0.9"/>
+    <circle cx="-10" cy="-8" r="6" fill="#d4af37"/> <!-- Central hub -->
+    <circle cx="8" cy="-24" r="4" fill="#d4af37" opacity="0.85"/>
+    <circle cx="14" cy="6" r="5" fill="#d4af37" opacity="0.9"/>
+    <circle cx="-6" cy="18" r="3.5" fill="#d4af37" opacity="0.8"/>
+    <circle cx="26" cy="24" r="4" fill="#d4af37" opacity="0.85"/>
+    
+    <!-- Secondary steel nodes -->
+    <circle cx="-22" cy="10" r="3" fill="#6b8cba" opacity="0.7"/>
+    <circle cx="28" cy="-14" r="3.5" fill="#6b8cba" opacity="0.7"/>
+    <circle cx="-30" cy="28" r="2.5" fill="#6b8cba" opacity="0.5"/>
+    
+    <!-- Outer ring suggestion -->
+    <circle cx="0" cy="0" r="36" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,6"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="108" y="52" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="26" font-weight="700" fill="#f0ede8" letter-spacing="-0.5">
+    CompetitorGap
+  </text>
+  <text x="334" y="52" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="26" font-weight="700" fill="url(#goldGrad5)" letter-spacing="-0.5">
+    AI
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="108" y="76" font-family="'DM Sans', 'Inter', system-ui, sans-serif" font-size="10" fill="#6b8cba" letter-spacing="1.5">
+    MULTI-AGENT INTELLIGENCE PLATFORM
+  </text>
+</svg>

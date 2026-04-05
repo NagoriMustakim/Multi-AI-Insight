@@ -51,31 +51,34 @@ export function LiveFeedSection() {
     const [signals, setSignals] = useState<Signal[]>([])
     const [nextId, setNextId] = useState(0)
 
-    // Build initial signals
+    // Start empty or with 1
     useEffect(() => {
-        const initial = SIGNALS.slice(0, 5).map((s, i) => ({
-            ...s,
-            id: i,
-            time: getTimeAgo(i),
-        }))
-        setSignals(initial)
-        setNextId(5)
+        setSignals([])
+        setNextId(0)
     }, [])
 
-    // Animate new signals every 3s
+    // Add a new signal every 2.5s. If it reaches 10, clear it back to 0.
     useEffect(() => {
         const timer = setInterval(() => {
             setNextId(prev => {
                 const signalData = SIGNALS[prev % SIGNALS.length]
                 const newSignal: Signal = {
                     ...signalData,
-                    id: prev,
+                    id: Date.now(),
                     time: 'Just now',
                 }
-                setSignals(curr => [newSignal, ...curr].slice(0, 6))
+
+                setSignals(curr => {
+                    // If we reached 10 signals, reset it back to 1 (acting as the 0 -> 1 loop reset)
+                    if (curr.length >= 10) {
+                        return [newSignal]
+                    }
+                    return [newSignal, ...curr]
+                })
+
                 return prev + 1
             })
-        }, 3000)
+        }, 2500)
         return () => clearInterval(timer)
     }, [])
 

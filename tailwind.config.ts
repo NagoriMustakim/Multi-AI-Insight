@@ -18,14 +18,14 @@ const config: Config = {
         extend: {
             colors: {
                 ink: {
-                    950: '#07070b',
-                    900: '#0d0d14',
-                    800: '#13131e',
-                    700: '#1a1a28',
+                    950: '#05060A',
+                    900: '#0A0B10',
+                    800: '#11121A',
+                    700: '#1A1C28',
                 },
                 gold: {
-                    DEFAULT: '#c9a84c',
-                    muted: 'rgba(201,168,76,0.15)',
+                    DEFAULT: '#d4af37',
+                    muted: 'rgba(212,175,55,0.15)',
                 },
                 steel: {
                     DEFAULT: '#6b8cba',
@@ -39,6 +39,11 @@ const config: Config = {
                 primary: '#f0ede8',
                 secondary: '#9896a4',
                 muted: '#5c5a6e',
+            },
+            boxShadow: {
+                'glow-gold': '0 0 20px rgba(212, 175, 55, 0.3), 0 0 60px rgba(212, 175, 55, 0.1)',
+                'glass-inner': 'inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                'card-hover': '0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
             },
             fontFamily: {
                 display: ['var(--font-playfair)', 'serif'],

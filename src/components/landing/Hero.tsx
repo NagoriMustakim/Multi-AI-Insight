@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Crosshair, LogIn, UserPlus } from 'lucide-react'
+import { ArrowRight, LogIn, UserPlus } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { BrandLogo, NeuralGraphIcon } from '@/components/ui/Logo'
 import { useAuth } from '@/hooks/useAuth'
 import { AuthModal } from '@/components/auth/AuthModal'
 
@@ -20,7 +21,8 @@ function RadarVisual() {
     return (
         <div className="relative w-full max-w-[640px] aspect-square mx-auto">
             {/* Glow backdrop */}
-            <div className="absolute inset-0 rounded-full bg-gold/5 blur-3xl" />
+            <div className="absolute inset-0 rounded-full bg-gold/20 blur-[80px] mix-blend-screen opacity-70" />
+            <div className="absolute inset-10 rounded-full bg-gold/10 blur-[40px] mix-blend-plus-lighter" />
 
             {/* Concentric rings */}
             {[100, 75, 50, 25].map((size) => (
@@ -130,18 +132,13 @@ export function Hero() {
             <section className="relative min-h-screen flex flex-col overflow-hidden">
                 {/* Navigation bar */}
                 <nav className="w-full px-6 py-5 flex items-center justify-between max-w-7xl mx-auto">
-                    <div className="flex items-center gap-3 shrink-0">
-                        <div className="p-2 rounded-xl bg-gold-muted border border-gold/20">
-                            <Crosshair className="h-5 w-5 text-gold" />
-                        </div>
-                        <span className="font-display font-bold text-lg sm:text-xl text-[var(--text-primary)]">
-                            CompetitorGap<span className="text-gold"> AI</span>
-                        </span>
-                    </div>
+                    <a href="/" className="shrink-0">
+                        <BrandLogo size="md" />
+                    </a>
                     <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-                        <button onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-[var(--text-muted)] hover:text-gold transition-colors">Features</button>
-                        <button onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="text-sm font-medium text-[var(--text-muted)] hover:text-gold transition-colors">How it works</button>
-                        <button onClick={() => window.location.href = '/pricing'} className="text-sm font-medium text-[var(--text-muted)] hover:text-gold transition-colors font-bold text-gold">Pricing</button>
+                        <button onClick={() => document.getElementById('problem')?.scrollIntoView({ behavior: 'smooth' })} className="text-base font-medium text-[var(--text-muted)] hover:text-gold transition-colors">Features</button>
+                        <button onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="text-base font-medium text-[var(--text-muted)] hover:text-gold transition-colors">How it works</button>
+                        <button onClick={() => window.location.href = '/pricing'} className="text-base font-bold text-[var(--text-muted)] hover:text-gold transition-colors text-gold">Pricing</button>
                     </div>
 
                     {!isAuthenticated && (
@@ -177,18 +174,18 @@ export function Hero() {
                                 transition={{ duration: 0.7, ease: 'easeOut' }}
                             >
                                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-muted border border-gold/20 text-gold text-sm font-medium mb-8">
-                                    <Crosshair className="h-4 w-4" />
+                                    <NeuralGraphIcon size={16} />
                                     Multi-Agent AI Competitive Intelligence
                                 </div>
 
-                                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6">
+                                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
                                     <span className="text-[var(--text-primary)]">Your Competitors</span>
                                     <br />
                                     <span className="text-[var(--text-primary)]">Are Moving.</span>
                                     <br className="sm:hidden" />
-                                    <span className="text-gradient-gold">We Tell You</span>
+                                    <span className="text-gradient-gold drop-shadow-lg">We Tell You</span>
                                     <br />
-                                    <span className="text-gradient-gold">Exactly How.</span>
+                                    <span className="text-gradient-gold drop-shadow-lg">Exactly How.</span>
                                 </h1>
 
                                 <p className="text-lg text-[var(--text-secondary)] max-w-xl mb-10 leading-relaxed">

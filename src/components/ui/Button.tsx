@@ -11,18 +11,18 @@ function cn(...inputs: (string | undefined | null | boolean)[]) {
 }
 
 const buttonVariants = cva(
-    'inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-ink-950 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform',
+    'inline-flex items-center justify-center font-medium transition-all duration-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-ink-950 disabled:opacity-50 disabled:cursor-not-allowed will-change-transform active:scale-95',
     {
         variants: {
             variant: {
                 primary:
-                    'bg-gold text-ink-950 hover:bg-gold/90 focus:ring-gold/50 shadow-lg shadow-gold/20 hover:shadow-gold/30',
+                    'bg-gradient-to-br from-gold to-[#b38d22] text-ink-950 hover:brightness-110 focus:ring-gold/50 shadow-[0_4px_14px_0_rgba(212,175,55,0.39)] hover:shadow-[0_6px_20px_rgba(212,175,55,0.23),0_4px_15px_rgba(212,175,55,0.5)] shadow-glass-inner border border-[#e6cc80]',
                 secondary:
-                    'border border-steel/40 text-steel hover:bg-steel/10 focus:ring-steel/50',
+                    'glass-card text-text-primary hover:bg-gold/10 hover:border-gold/30 focus:ring-gold/50 transition-colors',
                 ghost:
-                    'text-text-secondary hover:text-text-primary hover:bg-ink-800/50',
+                    'text-text-secondary hover:text-text-primary hover:bg-ink-800/80 rounded-xl',
                 danger:
-                    'bg-danger/10 text-danger border border-danger/20 hover:bg-danger/20 focus:ring-danger/50',
+                    'bg-danger/10 text-danger border border-danger/20 hover:bg-danger/20 focus:ring-danger/50 shadow-glass-inner',
             },
             size: {
                 sm: 'px-3 py-1.5 text-sm gap-1.5',

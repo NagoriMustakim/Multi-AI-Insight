@@ -42,6 +42,7 @@ next-env.d.ts
 
 # bmad
 _bmad
+_bmad-output
 .agent
 .gemini
 

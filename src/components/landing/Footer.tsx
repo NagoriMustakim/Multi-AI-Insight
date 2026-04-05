@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Crosshair, Linkedin, Mail, Phone } from 'lucide-react'
+import { Linkedin, Mail, Phone } from 'lucide-react'
+import { BrandLogo } from '@/components/ui/Logo'
 
 export function Footer() {
     return (
@@ -10,13 +11,8 @@ export function Footer() {
                 <div className="grid md:grid-cols-4 gap-10 mb-12">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 rounded-xl bg-gold-muted border border-gold/20">
-                                <Crosshair className="h-5 w-5 text-gold" />
-                            </div>
-                            <span className="font-display font-bold text-xl text-[var(--text-primary)]">
-                                CompetitorGap<span className="text-gold"> AI</span>
-                            </span>
+                        <div className="mb-4">
+                            <BrandLogo size="lg" showTagline />
                         </div>
                         <p className="text-sm text-[var(--text-muted)] max-w-xs leading-relaxed mb-5">
                             AI-powered competitive intelligence for modern product teams. Understand your market in minutes, not months.
@@ -93,15 +89,7 @@ export function Footer() {
 
                 <div className="border-t border-ink-700/30 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p className="text-xs text-[var(--text-muted)]">
-                        © 2026 CompetitorGap AI. Built by{' '}
-                        <a
-                            href="https://www.linkedin.com/in/mustakimnagori"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gold hover:underline"
-                        >
-                            Mustakim Nagori
-                        </a>
+                        © 2026 Multi AI Insight
                     </p>
                     <div className="flex gap-6 text-xs text-[var(--text-muted)]">
                         <a href="/privacy" className="hover:text-gold transition-colors">Privacy</a>

@@ -65,7 +65,7 @@ export function AuthModal({ open, onOpenChange, defaultTab = 'login' }: AuthModa
                 toast('success', 'Welcome back!', 'You\'re now signed in.')
             } else {
                 await register(email, password, fullName)
-                toast('success', 'Account created!', 'Welcome to CompetitorGap AI.')
+                toast('success', 'Account created!', 'Welcome to Multi AI Insight.')
             }
             resetForm()
             onOpenChange(false)
