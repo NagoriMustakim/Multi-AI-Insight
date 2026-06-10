@@ -36,7 +36,7 @@ export default function AdminDashboardPage() {
     const getToken = () =>
         typeof window !== 'undefined' ? sessionStorage.getItem('adminToken') : null
 
-    const fetchUsers = async () => {
+    const fetchUsers = React.useCallback(async () => {
         setLoading(true)
         setError('')
         const token = getToken()
@@ -55,9 +55,9 @@ export default function AdminDashboardPage() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [])
 
-    useEffect(() => { fetchUsers() }, [])
+    useEffect(() => { fetchUsers() }, [fetchUsers])
 
     const handleGrantCredits = async (userId: string) => {
         const token = getToken()
