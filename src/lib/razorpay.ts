@@ -170,7 +170,6 @@ export async function createSubscription(
 ) {
     const razorpay = getRazorpay()
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const subscriptionData: any = {
         plan_id: planId,
         total_count: totalCount,
